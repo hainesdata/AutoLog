@@ -13,12 +13,15 @@ from PyQt5.QtWidgets import QTableWidgetItem
 import pandas as pd
 import dateutil.parser
 
+# Version here
+version = '0.0.1'
+
 # Save file name here
 name = 'test'
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+        MainWindow.setObjectName('MainWindow')
         MainWindow.resize(919, 366)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -174,11 +177,11 @@ class Ui_MainWindow(object):
         self.view_table()
 
     def save_csv(self):
-        self.input_table.to_csv(f'data/{name}.csv')
+        self.input_table.to_csv(f'data/{name}.csv', index_label=False)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", f"AutoLog v{version}"))
         item = self.display_table.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Date"))
         item = self.display_table.horizontalHeaderItem(1)
