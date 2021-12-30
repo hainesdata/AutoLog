@@ -1,5 +1,12 @@
 Date,Miles,Category,Part,Product,Cost,Notes
-0,11/1/21,85000,Maintenance,Oil,Mobil1 GF-6 5W-30,35.0,
-1,12/5/21,87000,Add-on,Frame,Govee Underglow,30.69,Replacement
-2,1/1/00,89000,Inspection,Belts,,,Split PS belt
-3,1/1/00,89500,Mod,Cabin air filter,peepeepoopoo,89,ruh roh
+0,11/1/21,85000.0,Maintenance,Oil,Mobil1 GF-6 5W-30,35.0,
+1,12/5/21,87000.0,Add-on,Frame,Govee Underglow,30.69,Replacement
+2,1/1/00,89000.0,Inspection,Belts,,,Split PS belt
+3,1/1/00,89500.0,Mod,Cabin air filter,peepeepoopoo,89.0,ruh roh
+4,1/1/22,89600.0,Maintenance,Transmission,,500.0,ruhroh
+5,1/1/22,89700.0,Maintenance,Fuel filter,oem,,
+6,1/1/22,89800.0,Maintenance,Oil,poop,,
+7,1/1/22,89900.0,Maintenance,Oil,,,
+8,1/1/22,89901.0,Maintenance,Oil,,,
+9,1/1/22,,Maintenance,Oil,,,
+10,1/1/22,,Maintenance,Oil,,,

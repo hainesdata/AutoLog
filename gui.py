@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui.ui'
-# Version 0.0.1
+# Form implementation generated from reading ui file 'ui_detached.ui'
+#
 # Created by: PyQt5 UI code generator 5.15.4
 #
 # WARNING: Any manual changes made to this file will be lost when pyuic5 is
@@ -9,19 +9,11 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem
-import pandas as pd
-import dateutil.parser
 
-# Version here
-version = '0.0.1'
-
-# Save file name here
-name = 'test'
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName('MainWindow')
+        MainWindow.setObjectName("MainWindow")
         MainWindow.resize(919, 366)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -32,15 +24,11 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents_2 = QtWidgets.QWidget()
         self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 877, 177))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
-
-        # Import CSV
-        self.input_table = pd.read_csv(f'data/{name}.csv')
         self.display_table = QtWidgets.QTableWidget(self.scrollAreaWidgetContents_2)
         self.display_table.setGeometry(QtCore.QRect(0, 0, 881, 181))
         self.display_table.setObjectName("display_table")
-
-        self.view_table()
-
+        self.display_table.setColumnCount(7)
+        self.display_table.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.display_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -57,7 +45,10 @@ class Ui_MainWindow(object):
         self.display_table.setHorizontalHeaderItem(6, item)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
         self.addEntryButton = QtWidgets.QPushButton(self.centralwidget)
-        self.addEntryButton.setGeometry(QtCore.QRect(820, 290, 81, 26))
+        self.addEntryButton.setGeometry(QtCore.QRect(810, 290, 91, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.addEntryButton.setFont(font)
         self.addEntryButton.setObjectName("addEntryButton")
         self.date_label = QtWidgets.QLabel(self.centralwidget)
         self.date_label.setGeometry(QtCore.QRect(20, 200, 31, 16))
@@ -82,6 +73,10 @@ class Ui_MainWindow(object):
         self.notes_label.setObjectName("notes_label")
         self.date_box = QtWidgets.QDateEdit(self.centralwidget)
         self.date_box.setGeometry(QtCore.QRect(20, 220, 71, 31))
+        self.date_box.setFrame(True)
+        self.date_box.setReadOnly(False)
+        self.date_box.setDateTime(QtCore.QDateTime(QtCore.QDate(2022, 1, 1), QtCore.QTime(0, 0, 0)))
+        self.date_box.setCalendarPopup(True)
         self.date_box.setObjectName("date_box")
         self.miles_box = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.miles_box.setGeometry(QtCore.QRect(100, 220, 81, 31))
@@ -127,12 +122,28 @@ class Ui_MainWindow(object):
         self.notes_box = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.notes_box.setGeometry(QtCore.QRect(610, 220, 291, 64))
         self.notes_box.setObjectName("notes_box")
+        self.addEntryButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.addEntryButton_2.setGeometry(QtCore.QRect(810, 190, 91, 21))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.addEntryButton_2.setFont(font)
+        self.addEntryButton_2.setObjectName("addEntryButton_2")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(710, 290, 101, 20))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 919, 21))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
+        self.menuTools = QtWidgets.QMenu(self.menubar)
+        self.menuTools.setObjectName("menuTools")
+        self.menuAbout = QtWidgets.QMenu(self.menubar)
+        self.menuAbout.setObjectName("menuAbout")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -141,47 +152,43 @@ class Ui_MainWindow(object):
         self.actionSave.setObjectName("actionSave")
         self.actionClose = QtWidgets.QAction(MainWindow)
         self.actionClose.setObjectName("actionClose")
+        self.actionImport = QtWidgets.QAction(MainWindow)
+        self.actionImport.setObjectName("actionImport")
+        self.actionReset = QtWidgets.QAction(MainWindow)
+        self.actionReset.setObjectName("actionReset")
+        self.actionAdd = QtWidgets.QAction(MainWindow)
+        self.actionAdd.setObjectName("actionAdd")
+        self.actionReset_session = QtWidgets.QAction(MainWindow)
+        self.actionReset_session.setObjectName("actionReset_session")
+        self.actionAdd_part = QtWidgets.QAction(MainWindow)
+        self.actionAdd_part.setObjectName("actionAdd_part")
+        self.actionAdd_category = QtWidgets.QAction(MainWindow)
+        self.actionAdd_category.setObjectName("actionAdd_category")
+        self.actionAbout = QtWidgets.QAction(MainWindow)
+        self.actionAbout.setObjectName("actionAbout")
+        self.actionDocumentation = QtWidgets.QAction(MainWindow)
+        self.actionDocumentation.setObjectName("actionDocumentation")
+        self.actionReport_issue = QtWidgets.QAction(MainWindow)
+        self.actionReport_issue.setObjectName("actionReport_issue")
+        self.menuFile.addAction(self.actionImport)
         self.menuFile.addAction(self.actionSave)
         self.menuFile.addAction(self.actionClose)
+        self.menuTools.addAction(self.actionReset_session)
+        self.menuTools.addAction(self.actionAdd_part)
+        self.menuTools.addAction(self.actionAdd_category)
+        self.menuAbout.addAction(self.actionAbout)
+        self.menuAbout.addAction(self.actionDocumentation)
+        self.menuAbout.addAction(self.actionReport_issue)
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menubar.addAction(self.menuTools.menuAction())
+        self.menubar.addAction(self.menuAbout.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        # Update name.csv and save
-        self.actionSave.triggered.connect(lambda: self.save_csv())
-
-        # Add record
-        self.addEntryButton.clicked.connect(lambda: self.add_entry([
-            str(dateutil.parser.parse(self.date_box.date().toString()).date().strftime('%-m/%-d/%y')),
-            self.miles_box.toPlainText(), self.cat_drop.currentText(), self.part_drop.currentText(),
-            self.product_box.toPlainText(), self.cost_box.toPlainText(), self.notes_box.toPlainText()
-        ]))
-
-    def view_table(self):
-        # Specify table dimensions
-        n_rows = len(self.input_table.index)
-        n_cols = len(self.input_table.columns)
-        self.display_table.setColumnCount(n_cols)
-        self.display_table.setRowCount(n_rows)
-        # Load data
-        for i in range(n_rows):
-            for j in range(n_cols):
-                self.display_table.setItem(i, j, QTableWidgetItem(str(self.input_table.iat[i, j])))
-        # Update dimensions
-        self.display_table.resizeColumnsToContents()
-        self.display_table.resizeRowsToContents()
-
-    def add_entry(self, values):
-        self.input_table.loc[len(self.input_table)] = values
-        self.view_table()
-
-    def save_csv(self):
-        self.input_table.to_csv(f'data/{name}.csv', index_label=False)
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", f"AutoLog v{version}"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         item = self.display_table.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Date"))
         item = self.display_table.horizontalHeaderItem(1)
@@ -196,7 +203,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("MainWindow", "Cost"))
         item = self.display_table.horizontalHeaderItem(6)
         item.setText(_translate("MainWindow", "Notes"))
-        self.addEntryButton.setText(_translate("MainWindow", "Add Entry"))
+        self.addEntryButton.setText(_translate("MainWindow", "Add entry"))
         self.date_label.setText(_translate("MainWindow", "Date"))
         self.miles_label.setText(_translate("MainWindow", "Miles"))
         self.cat_label.setText(_translate("MainWindow", "Category"))
@@ -229,9 +236,23 @@ class Ui_MainWindow(object):
         self.part_drop.setItemText(18, _translate("MainWindow", "Body"))
         self.part_drop.setItemText(19, _translate("MainWindow", "Frame"))
         self.part_drop.setItemText(20, _translate("MainWindow", "Brakes"))
+        self.addEntryButton_2.setText(_translate("MainWindow", "Remove selected"))
+        self.label.setText(_translate("MainWindow", "Added succesfully!"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.menuTools.setTitle(_translate("MainWindow", "Tools"))
+        self.menuAbout.setTitle(_translate("MainWindow", "Help"))
         self.actionSave.setText(_translate("MainWindow", "Save"))
+        self.actionSave.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionClose.setText(_translate("MainWindow", "Close"))
+        self.actionImport.setText(_translate("MainWindow", "Import..."))
+        self.actionReset.setText(_translate("MainWindow", "Reset"))
+        self.actionAdd.setText(_translate("MainWindow", "Add"))
+        self.actionReset_session.setText(_translate("MainWindow", "Reset session"))
+        self.actionAdd_part.setText(_translate("MainWindow", "Add part"))
+        self.actionAdd_category.setText(_translate("MainWindow", "Add category"))
+        self.actionAbout.setText(_translate("MainWindow", "About"))
+        self.actionDocumentation.setText(_translate("MainWindow", "Documentation"))
+        self.actionReport_issue.setText(_translate("MainWindow", "Report issue"))
 
 
 if __name__ == "__main__":
