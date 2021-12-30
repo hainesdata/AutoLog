@@ -85,14 +85,19 @@
    <widget class="QPushButton" name="addEntryButton">
     <property name="geometry">
      <rect>
-      <x>820</x>
+      <x>810</x>
       <y>290</y>
-      <width>81</width>
-      <height>26</height>
+      <width>91</width>
+      <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>Add Entry</string>
+     <string>Add entry</string>
     </property>
    </widget>
    <widget class="QLabel" name="date_label">
@@ -194,6 +199,25 @@
       <width>71</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="frame">
+     <bool>true</bool>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="dateTime">
+     <datetime>
+      <hour>0</hour>
+      <minute>0</minute>
+      <second>0</second>
+      <year>2022</year>
+      <month>1</month>
+      <day>1</day>
+     </datetime>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="miles_box">
@@ -384,6 +408,42 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="addEntryButton_2">
+    <property name="geometry">
+     <rect>
+      <x>810</x>
+      <y>190</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Remove selected</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>290</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Added succesfully!</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -398,10 +458,29 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionImport"/>
     <addaction name="actionSave"/>
     <addaction name="actionClose"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionReset_session"/>
+    <addaction name="actionAdd_part"/>
+    <addaction name="actionAdd_category"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionDocumentation"/>
+    <addaction name="actionReport_issue"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -415,6 +494,51 @@
   <action name="actionClose">
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Import...</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="text">
+    <string>Reset</string>
+   </property>
+  </action>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add</string>
+   </property>
+  </action>
+  <action name="actionReset_session">
+   <property name="text">
+    <string>Reset session</string>
+   </property>
+  </action>
+  <action name="actionAdd_part">
+   <property name="text">
+    <string>Add part</string>
+   </property>
+  </action>
+  <action name="actionAdd_category">
+   <property name="text">
+    <string>Add category</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionReport_issue">
+   <property name="text">
+    <string>Report issue</string>
    </property>
   </action>
  </widget>
