@@ -8,16 +8,16 @@ from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QFileDialog
 
 import gui
 
-version = '0.0.5'
+version = '0.0.6'
 
 try:
-    recent = pd.read_csv('data/recent.dat')
+    recent = pd.read_csv('recent.dat')
     name = recent.loc[0, 'recent:']
-except:
+except FileNotFoundError:
     recent_log = pd.DataFrame(columns=['recent:'])
-    recent_log['recent:'] = ['data/table.log']
-    recent_log.to_csv('data/recent.dat', index_label=False)
-    name = 'data/table.log'
+    recent_log['recent:'] = ['table.log']
+    recent_log.to_csv('recent.dat', index_label=False)
+    name = 'table.log'
 
 
 # Read CSV
@@ -33,7 +33,7 @@ def init():
     global wrk_table, input_table
     try:
         input_table = pd.read_csv(name)
-    except:
+    except FileNotFoundError:
         input_table = pd.DataFrame(columns=['Date', 'Miles', 'Category', 'Part', 'Product', 'Cost', 'Notes'])
     # Title
     ui.setupUi(MainWindow)
@@ -109,7 +109,7 @@ def save_csv():
     wrk_table.to_csv(f'{name}', index_label=False)
     recent_log = pd.DataFrame(columns=['recent:'])
     recent_log['recent:'] = [f'{name}']
-    recent_log.to_csv('data/recent.dat', index_label=False)
+    recent_log.to_csv('recent.dat', index_label=False)
 
 
 def select_file():
