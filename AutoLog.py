@@ -1,29 +1,69 @@
-import time
-import dateutil
-import gui
-import pandas as pd
 import sys
+import time
 
+import dateutil
+import pandas as pd
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView
+from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QFileDialog
 
-version = '0.0.3'
-name = 'test'
+import gui
+
+version = '0.0.5'
+
+try:
+    recent = pd.read_csv('data/recent.dat')
+    name = recent.loc[0, 'recent:']
+except:
+    recent_log = pd.DataFrame(columns=['recent:'])
+    recent_log['recent:'] = ['data/table.log']
+    recent_log.to_csv('data/recent.dat', index_label=False)
+    name = 'data/table.log'
+
 
 # Read CSV
-input_table = pd.read_csv(f'data/{name}.log')
-wrk_table = input_table
+input_table = None
+wrk_table = None
 app = QtWidgets.QApplication(sys.argv)
 MainWindow = QtWidgets.QMainWindow()
-
-# Title
 ui = gui.Ui_MainWindow()
-ui.setupUi(MainWindow)
-MainWindow.setWindowTitle(f'AutoLog v{version}')
-ui.display_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+add_success_label = None
 
-# Set label attribute here
-add_success_label = ui.label
+
+def init():
+    global wrk_table, input_table
+    try:
+        input_table = pd.read_csv(name)
+    except:
+        input_table = pd.DataFrame(columns=['Date', 'Miles', 'Category', 'Part', 'Product', 'Cost', 'Notes'])
+    # Title
+    ui.setupUi(MainWindow)
+    MainWindow.setWindowTitle(f'AutoLog v{version}')
+    ui.display_table.setSelectionBehavior(QAbstractItemView.SelectRows)
+    wrk_table = input_table
+    wrk_table.Miles = wrk_table.Miles.fillna(0)
+    wrk_table.Miles = wrk_table.Miles.astype('int')
+    view_table(ui)
+
+    # Set label attribute here
+    global add_success_label
+    add_success_label = ui.label
+    add_success_label.hide()
+
+    # Update name.csv and save
+    ui.actionSave.triggered.connect(lambda: save_csv())
+
+    # Add record
+    ui.addEntryButton.clicked.connect(lambda: add_entry([
+        str(dateutil.parser.parse(ui.date_box.date().toString()).date().strftime('%-m/%-d/%y')),
+        ui.miles_box.toPlainText(), ui.cat_drop.currentText(), ui.part_drop.currentText(),
+        ui.product_box.toPlainText(), ui.cost_box.toPlainText(), ui.notes_box.toPlainText()
+    ]))
+
+    # Remove record
+    ui.addEntryButton_2.clicked.connect(lambda: rmv_entry())
+
+    # Import file
+    ui.actionImport.triggered.connect(lambda: select_file())
 
 
 def view_table(input_ui):
@@ -66,23 +106,21 @@ def rmv_entry():
 
 
 def save_csv():
-    wrk_table.to_csv(f'data/{name}.log', index_label=False)
+    wrk_table.to_csv(f'{name}', index_label=False)
+    recent_log = pd.DataFrame(columns=['recent:'])
+    recent_log['recent:'] = [f'{name}']
+    recent_log.to_csv('data/recent.dat', index_label=False)
 
 
-view_table(ui)
-add_success_label.hide()
-# Update name.csv and save
-ui.actionSave.triggered.connect(lambda: save_csv())
+def select_file():
+    global input_table, name
+    (import_name, filetype) = QFileDialog.getOpenFileName()
+    name = import_name
+    print(name)
+    input_table = pd.read_csv(name)
+    init()
 
-# Add record
-ui.addEntryButton.clicked.connect(lambda: add_entry([
-    str(dateutil.parser.parse(ui.date_box.date().toString()).date().strftime('%-m/%-d/%y')),
-    ui.miles_box.toPlainText(), ui.cat_drop.currentText(), ui.part_drop.currentText(),
-    ui.product_box.toPlainText(), ui.cost_box.toPlainText(), ui.notes_box.toPlainText()
-]))
 
-# Remove record
-ui.addEntryButton_2.clicked.connect(lambda: rmv_entry())
-
+init()
 MainWindow.show()
 sys.exit(app.exec_())
