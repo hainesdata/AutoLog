@@ -1,0 +1,1 @@
+dist/AutoLog.app/Contents/MacOS/AutoLog
