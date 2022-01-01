@@ -4,21 +4,20 @@ import time
 import dateutil
 import pandas as pd
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QFileDialog
+from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QFileDialog, QMessageBox
 
 import gui
 
-version = '0.0.6'
+version = '0.0.7'
 
 try:
     recent = pd.read_csv('recent.dat')
     name = recent.loc[0, 'recent:']
-except FileNotFoundError:
+except:
     recent_log = pd.DataFrame(columns=['recent:'])
     recent_log['recent:'] = ['table.log']
     recent_log.to_csv('recent.dat', index_label=False)
     name = 'table.log'
-
 
 # Read CSV
 input_table = None
@@ -33,7 +32,7 @@ def init():
     global wrk_table, input_table
     try:
         input_table = pd.read_csv(name)
-    except FileNotFoundError:
+    except:
         input_table = pd.DataFrame(columns=['Date', 'Miles', 'Category', 'Part', 'Product', 'Cost', 'Notes'])
     # Title
     ui.setupUi(MainWindow)
@@ -81,16 +80,57 @@ def view_table(input_ui):
     input_ui.display_table.resizeRowsToContents()
 
 
+def validate(values):
+    error_raised = False
+    if not values[1].isnumeric():
+        invalid_mileage()
+        error_raised = True
+        values[1] = 0
+    if not values[5].isnumeric():
+        invalid_price()
+        error_raised = True
+        values[5] = 0
+    if error_raised:
+        raise SyntaxError()
+    return values
+
+
+def invalid_mileage():
+    box = QtWidgets.QMessageBox()
+    box.setWindowTitle('Error Adding Entry')
+    box.setText(
+        'Validation Error 200: The mileage you entered is invalid: make sure you are not using commas, symbols, '
+        'spaces, or new lines.')
+    box.setIcon(QMessageBox.Critical)
+    box.exec_()
+
+
+def invalid_price():
+    box = QtWidgets.QMessageBox()
+    box.setWindowTitle('Error Adding Entry')
+    box.setText(
+        'Validation Error 300: The price you entered is invalid: make sure symbols, commas, spaces, or new lines'
+        ' are not used.')
+    box.setIcon(QMessageBox.Critical)
+    box.exec_()
+
+
 def add_entry(values):
+    try:
+        values = validate(values)
+    except SyntaxError:
+        return
     wrk_table.loc[len(wrk_table)] = values
     view_table(ui)
     save_csv()
+    show_add_success()
 
 
 def show_add_success():
-    add_success_label.show()
-    time.sleep(3)
-    add_success_label.hide()
+    succ = QMessageBox()
+    succ.setIcon(QMessageBox.Information)
+    succ.setText('Record successfully added.')
+    succ.exec_()
 
 
 def rmv_entry():
@@ -98,9 +138,8 @@ def rmv_entry():
     selected = ui.display_table.selectionModel().selectedRows()
     for row in selected:
         queued_row = row.row()
-        # ui.display_table.removeRow(queued_row)
         wrk_table = wrk_table.drop(queued_row.__index__())
-        wrk_table.reset_index()
+    wrk_table = wrk_table.reset_index(drop=True)
     view_table(ui)
     save_csv()
 
@@ -121,6 +160,13 @@ def select_file():
     init()
 
 
-init()
-MainWindow.show()
+try:
+    init()
+    MainWindow.show()
+except:
+    crit = QMessageBox()
+    crit.setText('Critical runtime error: AutoLog must close. Any previously added entries should be saved.')
+    crit.setIcon(QMessageBox.Critical)
+    crit.exec_()
+
 sys.exit(app.exec_())
