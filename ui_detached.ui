@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>933</width>
-    <height>390</height>
+    <height>505</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,8 +31,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>877</width>
-       <height>177</height>
+       <width>879</width>
+       <height>179</height>
       </rect>
      </property>
      <widget class="QTableWidget" name="display_table">
@@ -61,12 +61,17 @@
       </column>
       <column>
        <property name="text">
-        <string>Part</string>
+        <string>Brand</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>Product</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Part Number</string>
        </property>
       </column>
       <column>
@@ -85,10 +90,10 @@
    <widget class="QPushButton" name="addEntryButton">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>300</y>
+      <x>790</x>
+      <y>380</y>
       <width>91</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -116,7 +121,7 @@
    <widget class="QLabel" name="miles_label">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>140</x>
       <y>210</y>
       <width>60</width>
       <height>16</height>
@@ -129,7 +134,7 @@
    <widget class="QLabel" name="cat_label">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>250</x>
       <y>210</y>
       <width>60</width>
       <height>16</height>
@@ -139,24 +144,24 @@
      <string>Category</string>
     </property>
    </widget>
-   <widget class="QLabel" name="part_label">
+   <widget class="QLabel" name="brand_label">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>210</y>
-      <width>31</width>
+      <x>20</x>
+      <y>280</y>
+      <width>51</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Part</string>
+     <string>Brand</string>
     </property>
    </widget>
    <widget class="QLabel" name="product_label">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>210</y>
+      <x>150</x>
+      <y>280</y>
       <width>60</width>
       <height>16</height>
      </rect>
@@ -168,7 +173,7 @@
    <widget class="QLabel" name="cost_label">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>370</x>
       <y>210</y>
       <width>60</width>
       <height>16</height>
@@ -181,8 +186,8 @@
    <widget class="QLabel" name="notes_label">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>210</y>
+      <x>20</x>
+      <y>350</y>
       <width>60</width>
       <height>16</height>
      </rect>
@@ -194,10 +199,10 @@
    <widget class="QDateEdit" name="date_box">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>71</width>
-      <height>31</height>
+      <x>10</x>
+      <y>220</y>
+      <width>111</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="frame">
@@ -208,40 +213,71 @@
     </property>
     <property name="dateTime">
      <datetime>
-      <hour>0</hour>
+      <hour>5</hour>
       <minute>0</minute>
       <second>0</second>
-      <year>2022</year>
+      <year>2023</year>
       <month>1</month>
-      <day>1</day>
+      <day>7</day>
      </datetime>
     </property>
     <property name="calendarPopup">
      <bool>true</bool>
     </property>
+    <property name="date">
+     <date>
+      <year>2023</year>
+      <month>1</month>
+      <day>7</day>
+     </date>
+    </property>
    </widget>
    <widget class="QPlainTextEdit" name="miles_box">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>140</x>
       <y>230</y>
       <width>81</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
    </widget>
    <widget class="QComboBox" name="cat_drop">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>231</y>
-      <width>101</width>
-      <height>31</height>
+      <x>240</x>
+      <y>220</y>
+      <width>111</width>
+      <height>51</height>
      </rect>
     </property>
     <item>
      <property name="text">
-      <string>Maintenance</string>
+      <string>Repair</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Replacement</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Service</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Report</string>
      </property>
     </item>
     <item>
@@ -249,161 +285,60 @@
       <string>Add-on</string>
      </property>
     </item>
-    <item>
-     <property name="text">
-      <string>Mod</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Inspection</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QComboBox" name="part_drop">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>230</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Oil</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Oil filter</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Engine air filter</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Cabin air filter</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Tires</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Wheels</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Belts</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Fuel filter</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Transmission</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Alternator</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Pulleys</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Exhaust</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Wiring</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Fuses</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Accessories</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Interior</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Lights</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Wipers</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Body</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Frame</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Brakes</string>
-     </property>
-    </item>
    </widget>
    <widget class="QPlainTextEdit" name="product_box">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>230</y>
+      <x>150</x>
+      <y>300</y>
       <width>104</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
+    <property name="plainText">
+     <string/>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="cost_box">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>370</x>
       <y>230</y>
-      <width>61</width>
+      <width>51</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
     <property name="plainText">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string/>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="notes_box">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>230</y>
-      <width>291</width>
+      <x>20</x>
+      <y>370</y>
+      <width>571</width>
       <height>64</height>
      </rect>
     </property>
@@ -411,10 +346,10 @@
    <widget class="QPushButton" name="addEntryButton_2">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>780</x>
       <y>200</y>
-      <width>91</width>
-      <height>21</height>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -423,14 +358,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Remove</string>
+     <string>Remove selected</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>300</y>
+      <x>790</x>
+      <y>410</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -444,6 +379,60 @@
      <string>Added succesfully!</string>
     </property>
    </widget>
+   <widget class="QPlainTextEdit" name="brand_box">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>300</y>
+      <width>104</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="pn_box">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>300</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pn_label">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>280</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Part number</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -451,7 +440,7 @@
      <x>0</x>
      <y>0</y>
      <width>933</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -467,7 +456,6 @@
      <string>Tools</string>
     </property>
     <addaction name="actionReset_session"/>
-    <addaction name="actionAdd_part"/>
     <addaction name="actionAdd_category"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
@@ -517,11 +505,6 @@
   <action name="actionReset_session">
    <property name="text">
     <string>Reset session</string>
-   </property>
-  </action>
-  <action name="actionAdd_part">
-   <property name="text">
-    <string>Add part</string>
    </property>
   </action>
   <action name="actionAdd_category">

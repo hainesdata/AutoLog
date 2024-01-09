@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QFileDialog, QM
 
 import gui
 
-version = '0.0.7'
+version = '0.0.8'
 
 try:
     recent = pd.read_csv('recent.dat')
@@ -33,7 +33,7 @@ def init():
     try:
         input_table = pd.read_csv(name)
     except:
-        input_table = pd.DataFrame(columns=['Date', 'Miles', 'Category', 'Part', 'Product', 'Cost', 'Notes'])
+        input_table = pd.DataFrame(columns=['Date', 'Miles', 'Category', 'Brand', 'Product', 'Part Number', 'Cost', 'Notes'])
     # Title
     ui.setupUi(MainWindow)
     MainWindow.setWindowTitle(f'AutoLog v{version}')
@@ -54,8 +54,8 @@ def init():
     # Add record
     ui.addEntryButton.clicked.connect(lambda: add_entry([
         str(dateutil.parser.parse(ui.date_box.date().toString()).date().strftime('%-m/%-d/%y')),
-        ui.miles_box.toPlainText(), ui.cat_drop.currentText(), ui.part_drop.currentText(),
-        ui.product_box.toPlainText(), ui.cost_box.toPlainText(), ui.notes_box.toPlainText()
+        ui.miles_box.toPlainText(), ui.cat_drop.currentText(), ui.brand_box.toPlainText(),
+        ui.product_box.toPlainText(), ui.pn_box.toPlainText(), ui.cost_box.toPlainText(), ui.notes_box.toPlainText()
     ]))
 
     # Remove record
@@ -86,7 +86,7 @@ def validate(values):
         invalid_mileage()
         error_raised = True
         values[1] = 0
-    if not values[5].isnumeric():
+    if not values[6].isnumeric():
         invalid_price()
         error_raised = True
         values[5] = 0
